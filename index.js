@@ -1,21 +1,21 @@
-require('dotent').config();
+require('dotenv').config();
 const knex = require('./database')
+const express = require('express');
+const morgan = require('morgan');
+const app = express();
+const menuItemRoutes = require('./routes/menuItems')
 
 
+app.use(morgan('dev'));
+app.use(express.json());
+
+app.get('/', (request ,response)=>{
+    response.send('menu-knex')
+})
+
+app.use('/menuitems', menuItemRoutes)
 
 
-
-
-// const env =   process.env.NODE_ENV || 'development';
-// const config = require('./knex.js')[env];
-// const knex = require('knex')(config);
-
-// const express = require('express');
-// const app = express();
-// const morgan = require('morgan');
-
-
-
-// const PORT = process.env.PORT || 3010;
-
-// module.exports = knex;
+app.listen(process.env.PORT, () => {
+    console.log(`library-express: Express application is listening on port ${process.env.PORT}...`);
+});

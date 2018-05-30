@@ -1,0 +1,38 @@
+2291  mkdir menu-knex
+ 2292  cd menu-knex
+ 2293  npm init -y
+ 2294  .gitignore
+ 2295  tgit init
+ 2296  git init
+ 2297  cat>> .gitignore <<EOF\nnode_modules \n.env\nEOF
+ 2298  npm install nodemone --save-dev
+ 2299  npm install express morgan pg knex
+ 2300  touch index.js
+ 2301  npm install dotenv
+ 2302  touch knex.js
+ 2303  createdb menu_db
+ 2304  touch database.js
+ 2305  touch .env
+ 2306  git add
+ 2307  git add .
+ 2308  git commit -m "Firsr step "
+ 2309  npx knex migrate:make create_table_menu_items
+ 2310  npx knex seed:make seeds
+ 2311  npx knex migrate:latest
+ 2312  npx knex seed:run
+ 2313  psql -d menu_db -c 'SELECT * FORM  MENU_ITEMS;'
+ 2314  psql -d menu_db -c 'SELECT * FROM  MENU_ITEMS;'
+ 2315  npx knex migrate:make alter_table_menu_items_add_column_gluten_free
+ 2316  npx knex migrate:latest
+ 2317  psql -d menu_db -c 'SELECT * FROM  MENU_ITEMS;'
+ 2318  npx knex migrate:latest
+ 2319  psql -d menu_db -c 'SELECT * FROM  MENU_ITEMS;'
+ 2320  psql -d menu_db -c 'SELECT * FORM  MENU_ITEMS;'
+ 2321  npx knex migrate:latest
+ 2322  psql -d menu_db -c 'SELECT * FROM  MENU_ITEMS;'
+ 2323  npx knex migrate:rollback
+ 2324  npx knex migrate:make repair_add_column_gluten_free
+ 2325  npx knex migrate:latest
+ 2326  psql -d menu_db -c 'SELECT * FROM  MENU_ITEMS;'
+ 2327  npx knex seed:run
+ 2328  psql -d menu_db -c 'SELECT * FROM  MENU_ITEMS;'
